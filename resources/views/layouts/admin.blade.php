@@ -2,14 +2,14 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>SINBO | @yield('title')</title>
+        <title>E-Course | @yield('title')</title>
         <meta name="description" content="Responsive, Bootstrap, BS4" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <!-- style -->
         <!-- build:css ../dashboard/css/site.min.css -->
-        <link rel="stylesheet" href="{{ asset('dashboard/css/bootstrap.css') }}" type="text/css" />
-        <link rel="stylesheet" href="{{ asset('dashboard/css/theme.css') }}" type="text/css" />
-        <link rel="stylesheet" href="{{ asset('dashboard/css/style.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('basik/assets/css/bootstrap.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('basik/assets/css/theme.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('basik/assets/css/style.css') }}" type="text/css" />
         <!-- endbuild -->
     </head>
     <body class="layout-row">
@@ -31,25 +31,25 @@
         </div>
         <!-- build:js ../dashboard/js/site.min.js -->
         <!-- jQuery -->
-        <script src="{{asset('dashboard/libs/jquery/dist/jquery.min.js')  }}"></script>
+        <script src="{{ asset('basik/libs/jquery/dist/jquery.min.js')  }}"></script>
         <!-- Bootstrap -->
-        <script src="{{ asset('dashboard/libs/popper.js/dist/umd/popper.min.js') }}"></script>
-        <script src="{{ asset('dashboard/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('basik/libs/popper.js/dist/umd/popper.min.js') }}"></script>
+        <script src="{{ asset('basik/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <!-- ajax page -->
-        <script src="{{ asset('dashboard/libs/pjax/pjax.min.js') }}"></script>
-        <script src="{{ asset('dashboard/js/ajax.js') }}"></script>
+        <script src="{{ asset('basik/libs/pjax/pjax.min.js') }}"></script>
+        <script src="{{ asset('basik/assets/js/ajax.js') }}"></script>
         <!-- lazyload plugin -->
-        <script src="{{ asset('dashboard/js/lazyload.config.js') }}"></script>
-        <script src="{{ asset('dashboard/js/lazyload.js') }}"></script>
-        <script src="{{ asset('dashboard/js/plugin.js') }}"></script>
+        <script src="{{ asset('basik/assets/js/lazyload.config.js') }}"></script>
+        <script src="{{ asset('basik/assets/js/lazyload.js') }}"></script>
+        <script src="{{ asset('basik/assets/js/plugin.js') }}"></script>
         <!-- scrollreveal -->
-        <script src="{{ asset('dashboard/libs/scrollreveal/dist/scrollreveal.min.js') }}"></script>
+        <script src="{{ asset('basik/libs/scrollreveal/dist/scrollreveal.min.js') }}"></script>
         <!-- feathericon -->
-        <script src="{{ asset('dashboard/libs/feather-icons/dist/feather.min.js') }}"></script>
-        <script src="{{ asset('dashboard/js/plugins/feathericon.js') }}"></script>
+        <script src="{{ asset('basik/libs/feather-icons/dist/feather.min.js') }}"></script>
+        <script src="{{ asset('basik/assets/js/plugins/feathericon.js') }}"></script>
         <!-- theme -->
-        <script src="{{ asset('dashboard/js/theme.js') }}"></script>
-        <script src="{{ asset('dashboard/js/utils.js') }}"></script>
+        <script src="{{ asset('basik/assets/js/theme.js') }}"></script>
+        <script src="{{ asset('basik/assets/js/utils.js') }}"></script>
         <!-- endbuild -->
     </body>
 </html>
