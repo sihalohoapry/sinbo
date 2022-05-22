@@ -16,7 +16,7 @@ class CreateTransactionSparepartsTable extends Migration
         Schema::create('transaction_spareparts', function (Blueprint $table) {
             $table->id();
             $table->string('customer_name')->nullable();
-            $table->double('profit');
+            $table->double('profit')->nullable();
             $table->timestamps();
         });
     }

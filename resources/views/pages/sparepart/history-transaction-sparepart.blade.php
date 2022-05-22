@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Sparepart
+    Transaction Sparepart
 @endsection
 @section('content')
 <div id="content" class="flex ">
@@ -10,12 +10,12 @@
         <div class="page-hero page-container " id="page-hero">
             <div class="padding d-flex">
                 <div class="page-title">
-                    <h2 class="text-md text-highlight">Sparepart</h2>
-                    <small class="text-muted">Daftar sparepart</small>
+                    <h2 class="text-md text-highlight">Transaksi Sparepart</h2>
+                    <small class="text-muted">Data - data histori transaksi</small>
                 </div>
                 <div class="flex"></div>
                 <div>
-                    <a href="{{ route('sparepart.create') }}" class="btn btn-md text-muted">Tambah sparepart</span>
+                    <a href="{{ route('create-transaction') }}" class="btn btn-md text-muted">Buat Transaksi</span>
                         <i data-feather="arrow-right"></i>
                     </a>
                 </div>
@@ -28,10 +28,8 @@
                         <thead>
                             <tr>
                                 <th><span class="text-muted">No</span></th>
-                                <th><span class="text-muted">Stok</span></th>
-                                <th><span class="text-muted">Nama Sparepart</span></th>
-                                <th><span class="text-muted">Harga</span></th>
-                                <th><span class="text-muted">Gambar</span></th>
+                                <th><span class="text-muted">Tanggal transaksi</span></th>
+                                <th><span class="text-muted">Total</span></th>
 
                             </tr>
                         </thead>
@@ -39,29 +37,24 @@
                             @php
                                 $no = 1;
                             @endphp
-                            @foreach ($spareparts as $row )
+                            @foreach ($transactions as $row )
                             <tr class=" " data-id="3">
                                 <td style="min-width:30px;text-align:center">
                                     <small class="text-muted">{{ $no ++ }}</small>
                                 </td>
                                 <td>
                                     <span class="item-amount text-sm ">
-                                        {{ $row->stock_sparepart }}
+                                        {{ $row->customer_name }}
                                     </span>
                                 </td>
                                 <td class="flex">
                                     <div class="item-except text-muted text-sm h-1x">
-                                        {{ $row->name_sparepart }}
+                                        {{ $row->created_at }}
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="item-amount text-sm ">
-                                        {{ $row->selling_price }}
-                                    </span>
                                 </td>
-                                <td>
-                                    <img src="{{ Storage::url($row->foto_sparepart) }}" width="100px" style="max-height: 400px;"
-                                    alt="">                                    
+                                <td>                                 
                                 </td>
                                 <td>
                                     <div class="item-action dropdown">
@@ -69,11 +62,8 @@
                                             <i data-feather="more-vertical"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right bg-black" role="menu">
-                                            <a class="dropdown-item" href="{{ route('sparepart.show', $row->id) }}">
+                                            <a class="dropdown-item" href="{{ route('detail-transaction', $row->id) }}">
                                                 Lihat Detail
-                                            </a>
-                                            <a href="{{ route('sparepart.edit', $row->id) }}" class="dropdown-item edit">
-                                                Edit
                                             </a>
                                         </div>
                                     </div>

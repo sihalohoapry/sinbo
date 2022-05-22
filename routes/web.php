@@ -22,3 +22,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('sparepart', SparepartController::class)->middleware(['auth']);
+Route::get('/hitory-transaction', [SparepartController::class, 'listTransaction'])->name('history-transaksi');
+Route::get('/create-transaction', [SparepartController::class, 'createTransaction'])->name('create-transaction');
+Route::get('/detail-transaction/{id}', [SparepartController::class, 'detailTransaction'])->name('detail-transaction');
+Route::post('/transaction-sparepart', [SparepartController::class, 'saveTransaction'])->name('transaction-sparepart');

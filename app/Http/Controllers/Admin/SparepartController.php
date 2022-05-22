@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SparepartInputRequest;
+use App\Models\OrderSparepart;
 use App\Models\Sparepart;
+use App\Models\TransactionSparepart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class SparepartController extends Controller
@@ -56,7 +59,10 @@ class SparepartController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Sparepart::findOrFail($id);
+        return view('pages.sparepart.show-detail', [
+            'sparepart' => $data
+        ]);
     }
 
     /**
@@ -67,7 +73,10 @@ class SparepartController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Sparepart::findOrFail($id);
+        return view('pages.sparepart.edit-sparepart', [
+            'sparepart' => $data
+        ]);
     }
 
     /**
@@ -77,9 +86,23 @@ class SparepartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SparepartInputRequest $request, $id)
     {
-        //
+        $data = $request->all();
+        $item = Sparepart::findOrFail($id);
+        $foto = $item->foto_sparepart;
+        if($request->foto_sparepart){
+            if ($foto){
+                Storage::disk('public')->delete($foto);
+            }
+            $data['foto_sparepart'] = $request->file('foto_sparepart')->store('assets/foto_sparepart','public');
+        }else{
+            unset($data['foto_sparepart']);
+        }
+
+        
+        $item->update($data);
+        return redirect()->route('sparepart.index');
     }
 
     /**
@@ -91,5 +114,64 @@ class SparepartController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function listTransaction(){
+        $transactions = TransactionSparepart::all();
+        return view('pages.sparepart.history-transaction-sparepart', [
+            'transactions' =>$transactions,
+        ]);
+    }
+
+    public function createTransaction(){
+        $spareparts = Sparepart::all();
+        return view('pages.sparepart.creaet-transaction',[
+            'spareparts' => $spareparts
+        ]);
+    }
+
+    // public function getPriceSparapart(Request $request){
+    //     $category = Sparepart::findOrFail($request->id);
+    //     $price = $category->selling_price;
+    //     return response()->json($price);
+    // }
+
+    public function saveTransaction(Request $request) {
+        $data = $request->all();
+        $transaction = new TransactionSparepart();
+        $transaction->customer_name = $data['customer_name'];
+        $transaction->save();
+        $addProfitTransaction = TransactionSparepart::findOrFail($transaction->id);
+
+        
+
+        foreach($data['name_sparepart'] as $item => $value){
+            $sparepart = Sparepart::findOrFail($value);
+            $data2 = array(
+                'sparepart_id' => $data['name_sparepart'][$item],
+                'transaction_sparepart_id' => $transaction->id,
+                'qty' => $data['qty'][$item],
+                'price' => $sparepart->selling_price,
+                'grand_price' => $sparepart->selling_price * $data['qty'][$item],
+                'profit_order' =>($sparepart->selling_price * $data['qty'][$item]) - ($sparepart->purchase_price * $data['qty'][$item])
+            );
+            
+            $stok = $sparepart->stock_sparepart - $data['qty'][$item];
+            $sparepart->update(['stock_sparepart' => $stok ]);
+            OrderSparepart::create($data2);
+
+        }
+        $allTransactionSparepart = OrderSparepart::where('transaction_sparepart_id', $transaction->id)->sum('profit_order');
+        $addProfitTransaction->update(['profit' => $allTransactionSparepart ]);
+        return redirect()->route('history-transaksi')->with('status','Berhasil melakukan transaksi');
+    }
+
+    public function detailTransaction($id) {
+        $transactions = TransactionSparepart::findOrFail($id);
+        $orders = OrderSparepart::with('Sparepart')->where('transaction_sparepart_id', $id)->get();
+        return view('pages.sparepart.show-detail-transactions', [
+            'transactions' => $transactions,
+            'orders' => $orders,
+        ]);
     }
 }

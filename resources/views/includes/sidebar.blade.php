@@ -4,7 +4,7 @@
         <div class="navbar">
             <!-- brand -->
             <a href="index.html" class="navbar-brand ">
-                <img src="{{ asset('dashboard/img/logo.png') }}" alt="logo">
+                <img src="{{ asset('basik/assets/img/logo.png') }}" alt="logo">
                 <span class="hidden-folded d-inline l-s-n-1x ">Garage</span>
             </a>
             <!-- / brand -->
@@ -32,7 +32,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="app.calendar.html">
+                        <a href="{{ route('history-transaksi') }}">
                             <span class="nav-icon text-info"><i data-feather='shopping-bag'></i></span>
                             <span class="nav-text">Transaksi Sparepart</span>
                         </a>

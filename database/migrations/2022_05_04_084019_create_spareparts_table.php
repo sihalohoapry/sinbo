@@ -15,14 +15,14 @@ class CreateSparepartsTable extends Migration
     {
         Schema::create('spareparts', function (Blueprint $table) {
             $table->id();
-            $table->string('name_sparepart');
-            $table->string('slug');
-            $table->integer('stock_sparepart');
-            $table->string('status_sparepart');
-            $table->double('selling_price');
-            $table->double('purchase_price');
-            $table->string('description');
-            $table->string('foto_sparepart');
+            $table->string('name_sparepart')->nullable();
+            $table->string('slug')->nullable();
+            $table->integer('stock_sparepart')->nullable();
+            $table->string('status_sparepart')->nullable();
+            $table->double('selling_price')->nullable();
+            $table->double('purchase_price')->nullable();
+            $table->string('description')->nullable();
+            $table->string('foto_sparepart')->nullable();
             $table->timestamps();
         });
     }

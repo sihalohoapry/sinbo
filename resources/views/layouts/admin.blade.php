@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>E-Course | @yield('title')</title>
+        <title>Bengkel Eko | @yield('title')</title>
         <meta name="description" content="Responsive, Bootstrap, BS4" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <!-- style -->
@@ -31,6 +31,9 @@
         </div>
         <!-- build:js ../dashboard/js/site.min.js -->
         <!-- jQuery -->
+        @stack('prepend-script')
+        {{-- @include('includes.script-layanan') --}}
+        @stack('addon-script')
         <script src="{{ asset('basik/libs/jquery/dist/jquery.min.js')  }}"></script>
         <!-- Bootstrap -->
         <script src="{{ asset('basik/libs/popper.js/dist/umd/popper.min.js') }}"></script>
@@ -50,6 +53,8 @@
         <!-- theme -->
         <script src="{{ asset('basik/assets/js/theme.js') }}"></script>
         <script src="{{ asset('basik/assets/js/utils.js') }}"></script>
+        
         <!-- endbuild -->
     </body>
 </html>
+

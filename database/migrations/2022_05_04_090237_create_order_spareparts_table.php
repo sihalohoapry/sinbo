@@ -17,10 +17,10 @@ class CreateOrderSparepartsTable extends Migration
             $table->id();
             $table->foreignId('sparepart_id')->constrained();
             $table->foreignId('transaction_sparepart_id')->constrained();
-            $table->integer('qty');
-            $table->double('price');
-            $table->double('grand_price');
-            $table->double('profit_order');
+            $table->integer('qty')->nullable();
+            $table->double('price')->nullable();
+            $table->double('grand_price')->nullable();
+            $table->double('profit_order')->nullable();
             $table->timestamps();
         });
     }
