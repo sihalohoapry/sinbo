@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\SparepartController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,8 @@ Route::get('/hitory-transaction', [SparepartController::class, 'listTransaction'
 Route::get('/create-transaction', [SparepartController::class, 'createTransaction'])->name('create-transaction');
 Route::get('/detail-transaction/{id}', [SparepartController::class, 'detailTransaction'])->name('detail-transaction');
 Route::post('/transaction-sparepart', [SparepartController::class, 'saveTransaction'])->name('transaction-sparepart');
+
+Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::post('/active/{id}', [UserController::class, 'activeStatus'])->name('active');
+Route::post('/non-active/{id}', [UserController::class, 'nonActiveStatus'])->name('non-active');
+Route::post('/reset-password/{id}', [UserController::class, 'resetPassword'])->name('reset-password');

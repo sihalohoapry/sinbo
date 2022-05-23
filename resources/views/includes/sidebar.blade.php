@@ -56,7 +56,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="app.user.html">
+                        <a href="{{ route('user') }}">
                             <span class="nav-icon text-success"><i data-feather='users'></i></span>
                             <span class="nav-text">User</span>
                         </a>
@@ -68,10 +68,16 @@
                         </a>
                     </li>
                     <li>
-                        <a href="app.user.html">
-                            <span class="nav-icon text-success"><i data-feather='users'></i></span>
-                            <span class="nav-text">Keluar</span>
-                        </a>
+                        <a  href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                         <span class="nav-icon text-success"><i data-feather='arrow-up-right'></i></span>
+                         <span class="nav-text">Keluar</span>
+                     </a>
+
+                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                         @csrf
+                     </form>
                     </li>
                     
                 </ul>

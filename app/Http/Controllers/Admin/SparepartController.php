@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+use function PHPUnit\Framework\isEmpty;
+
 class SparepartController extends Controller
 {
     /**
@@ -143,22 +145,25 @@ class SparepartController extends Controller
         $transaction->save();
         $addProfitTransaction = TransactionSparepart::findOrFail($transaction->id);
 
-        
 
         foreach($data['name_sparepart'] as $item => $value){
             $sparepart = Sparepart::findOrFail($value);
-            $data2 = array(
-                'sparepart_id' => $data['name_sparepart'][$item],
-                'transaction_sparepart_id' => $transaction->id,
-                'qty' => $data['qty'][$item],
-                'price' => $sparepart->selling_price,
-                'grand_price' => $sparepart->selling_price * $data['qty'][$item],
-                'profit_order' =>($sparepart->selling_price * $data['qty'][$item]) - ($sparepart->purchase_price * $data['qty'][$item])
-            );
-            
-            $stok = $sparepart->stock_sparepart - $data['qty'][$item];
-            $sparepart->update(['stock_sparepart' => $stok ]);
-            OrderSparepart::create($data2);
+            if ($sparepart->stock_sparepart < $data['qty'][$item] ){
+                $addProfitTransaction->delete();
+                return redirect()->route('create-transaction')->with('fail','Gagal melakukan transaksi dikarenakan stok kurang');
+            } else {
+                $data2 = array(
+                    'sparepart_id' => $data['name_sparepart'][$item],
+                    'transaction_sparepart_id' => $transaction->id,
+                    'qty' => $data['qty'][$item],
+                    'price' => $sparepart->selling_price,
+                    'grand_price' => $sparepart->selling_price * $data['qty'][$item],
+                    'profit_order' =>($sparepart->selling_price * $data['qty'][$item]) - ($sparepart->purchase_price * $data['qty'][$item])
+                );
+                $stok = $sparepart->stock_sparepart - $data['qty'][$item];
+                $sparepart->update(['stock_sparepart' => $stok ]);
+                OrderSparepart::create($data2);
+            }
 
         }
         $allTransactionSparepart = OrderSparepart::where('transaction_sparepart_id', $transaction->id)->sum('profit_order');
@@ -169,9 +174,11 @@ class SparepartController extends Controller
     public function detailTransaction($id) {
         $transactions = TransactionSparepart::findOrFail($id);
         $orders = OrderSparepart::with('Sparepart')->where('transaction_sparepart_id', $id)->get();
+        $totalOrders = OrderSparepart::where('transaction_sparepart_id', $id)->sum('grand_price');
         return view('pages.sparepart.show-detail-transactions', [
             'transactions' => $transactions,
             'orders' => $orders,
+            'totalOrders' => $totalOrders,
         ]);
     }
 }

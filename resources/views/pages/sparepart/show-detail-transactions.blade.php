@@ -41,7 +41,7 @@
                                             </form>
                                             <h6 class="text-md text-highlight mt-4 mb-3">Sparepart yang di beli</h6>
                                             <div class="page-content page-container" id="page-content">
-                                                <div class="padding pl-0 pr-0 pt-2">
+                                                <div class="padding pl-0 pr-0 pt-2 pb-0">
                                                     <div id="toolbar">
                                                     </div>
                                                     <table id="table" class="table table-theme v-middle" data-plugin="bootstrapTable" data-toolbar="#toolbar" data-search="true" data-search-align="left" data-show-export="true" data-show-columns="true" data-detail-view="false" data-mobile-responsive="true"
@@ -92,9 +92,14 @@
                                                             @endforeach
                                                         </tbody>
                                                     </table>
+                                                    
                                                 </div>
+                                        <p5 class="text-bold " style="float: right ; margin-right: 165px !important" >{{ $totalOrders }}</p5>
+                                                
                                             </div>
+
                                         </div>
+
                                     </div>
                                 </div>
                                 

@@ -4,6 +4,8 @@
 @endsection
 @section('content')
 <div id="content" class="flex ">
+    @include('alert.failed')
+
                 <!-- ############ Main START-->
                 <div>
                     <div class="page-hero page-container " id="page-hero">
@@ -62,7 +64,7 @@
         addberkas();
       });
       function addberkas(){
-        var berkas = '<div><div class="form-group col-md-12"> <label for="name_sparepart" id="name_sparepart" class=" name_sparepart text-muted d-block">Nama sparepart</label><select name="name_sparepart[]" class="name_sparepart custom-select" required> <option selected>Pilih...</option> @foreach ($spareparts as $spareparts )<option value="{{ $spareparts->id }}">{{ $spareparts->name_sparepart }} (Rp. {{ $spareparts->selling_price }})  </option> @endforeach </select> </div> <div class="col-md-12"><div class="form-group"><label>Jumlah</label> <input type="number" name="qty[]" class="qty form-control" required></div> </div><div class="col-md-12"><div class="form-group"><a href="#" class="remove btn btn-danger mt-3 mb-5" style="float:rigth">Hapus</a></div></div>';
+        var berkas = '<div><div class="form-group col-md-12"> <label for="name_sparepart" id="name_sparepart" class=" name_sparepart text-muted d-block">Nama sparepart</label><select name="name_sparepart[]" class="name_sparepart custom-select" required> <option selected>Pilih...</option> @foreach ($spareparts as $spareparts )<option value="{{ $spareparts->id }}">{{ $spareparts->name_sparepart }} (Rp. {{ $spareparts->selling_price }}) (Stok {{ $spareparts->stock_sparepart }})  </option> @endforeach </select> </div> <div class="col-md-12"><div class="form-group"><label>Jumlah</label> <input type="number" name="qty[]" class="qty form-control" required></div> </div><div class="col-md-12"><div class="form-group"><a href="#" class="remove btn btn-danger mt-3 mb-5" style="float:rigth">Hapus</a></div></div>';
         $('.berkas').append(berkas);
       };
       $('.remove').live('click',function(){
