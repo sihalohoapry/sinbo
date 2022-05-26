@@ -1,17 +1,18 @@
 @extends('layouts.admin')
 @section('title')
-    User
+    List Service
 @endsection
 @section('content')
 <div id="content" class="flex ">
     <!-- ############ Main START-->
     @include('alert.success')
+    @include('alert.failed')
     <div>
         <div class="page-hero page-container " id="page-hero">
             <div class="padding d-flex">
                 <div class="page-title">
-                    <h2 class="text-md text-highlight">User</h2>
-                    <small class="text-muted">Daftar User</small>
+                    <h2 class="text-md text-highlight">Service</h2>
+                    <small class="text-muted">Jadwal booking yang sudah disetujui</small>
                 </div>
                 <div class="flex"></div>
             </div>
@@ -23,10 +24,10 @@
                         <thead>
                             <tr>
                                 <th><span class="text-muted">No</span></th>
-                                <th><span class="text-muted">Nama</span></th>
-                                <th><span class="text-muted">No Telpon</span></th>
-                                <th><span class="text-muted">Role</span></th>
-                                <th><span class="text-muted">Status</span></th>
+                                <th><span class="text-muted">Atas Nama</span></th>
+                                <th><span class="text-muted">Service</span></th>
+                                <th><span class="text-muted">Tanggal Booking</span></th>
+                                <th><span class="text-muted">Status Booking</span></th>
 
                             </tr>
                         </thead>
@@ -34,31 +35,30 @@
                             @php
                                 $no = 1;
                             @endphp
-                            @foreach ($users as $row )
+                            @foreach ($data as $row )
                             <tr class=" " data-id="3">
                                 <td style="min-width:30px;text-align:center">
                                     <small class="text-muted">{{ $no ++ }}</small>
                                 </td>
                                 <td>
                                     <span class="item-amount text-sm ">
-                                        {{ $row->name }}
+                                        {{ $row->User->name }}
                                     </span>
                                 </td>
                                 <td class="flex">
                                     <div class="item-except text-muted text-sm h-1x">
-                                        {{ $row->phone_number }}
+                                        {{ $row->title_booking }}
                                     </div>
                                 </td>
                                 <td>
                                     <span class="item-amount text-sm ">
-                                        {{ $row->role }}
+                                        {{ $row->date_booking }}
                                     </span>
                                 </td>
                                 <td>
                                     <span class="item-amount text-sm ">
-                                        {{ $row->status_user  }}
-                                    </span>
-                                                                       
+                                        {{ $row->status_booking }}
+                                    </span>                                 
                                 </td>
                                 <td>
                                     <div class="item-action dropdown">
@@ -66,35 +66,18 @@
                                             <i data-feather="more-vertical"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right bg-black" role="menu">
-                                            <form action="{{ route('non-active', $row->id) }}" method="POST">
+                                            <form action="{{ route('accept-pengajuan-customer', $row->id) }}" method="POST">
                                                 @csrf
                                                 <button  class="dropdown-item" type="submit">
-                                                    Non Active
+                                                    Lihat Detail
                                                 </button>
                                             </form>
-                                            <form action="{{ route('active', $row->id) }}" method="POST">
+                                            <form action="{{ route('reject-pengajuan-customer', $row->id) }}" method="POST">
                                                 @csrf
                                                 <button  class="dropdown-item" type="submit">
-                                                    Active
+                                                    Mulai Service
                                                 </button>
                                             </form>
-                                            <form action="{{ route('reset-password', $row->id) }}" method="POST">
-                                                @csrf
-                                                <button  class="dropdown-item" type="submit">
-                                                    Reset Password
-                                                </button>
-                                            </form>
-
-                                            @if (Auth::user()->role == 'SUPER-ADMIN')
-                                            <form action="{{ route('change-role-to-admin', $row->id) }}" method="POST">
-                                                @csrf
-                                                <button  class="dropdown-item" type="submit">
-                                                    Set Admin
-                                                </button>
-                                            </form>
-                                            @endif
-                                                
-                                            </a>
                                         </div>
                                     </div>
                                 </td>

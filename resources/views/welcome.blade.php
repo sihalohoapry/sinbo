@@ -42,6 +42,13 @@
                         <a class="nav-link" href="#">Kontak</a>
                     </li>
                 </ul>
+                @if (Auth::user())
+                <div class="d-flex">
+                    <a href="{{ route('home') }}" class="btn btn-master btn-primary me-3">
+                        Dashboard
+                    </a>
+                </div>  
+                @else
                 <div class="d-flex">
                     <a href="{{ route('login') }}" class="btn btn-master btn-secondary me-3">
                         Sign In
@@ -50,6 +57,9 @@
                         Sign Up
                     </a>
                 </div>
+                @endif
+
+
             </div>
         </div>
     </nav>

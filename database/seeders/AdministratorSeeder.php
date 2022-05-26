@@ -19,6 +19,7 @@ class AdministratorSeeder extends Seeder
         $superAdmin->email = "super-admin@gmail.com";
         $superAdmin->name = "Super Admin";
         $superAdmin->phone_number = "081200001111";
+        $superAdmin->role = "SUPER-ADMIN";
         $superAdmin->password = Hash::make("supersecret");
         $superAdmin->save();
     }
