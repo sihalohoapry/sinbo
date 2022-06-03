@@ -52,9 +52,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="app.mail.html">
+                        <a href="{{ route('list-history-service') }}">
                             <span class="nav-icon text-danger"><i data-feather='mail'></i></span>
-                            <span class="nav-text">Transaksi Booking</span>
+                            <span class="nav-text">History Service</span>
                         </a>
                     </li>
                     <li>

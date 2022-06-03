@@ -20,7 +20,7 @@ class CreateBookingsTable extends Migration
             $table->string('description_booking');
             $table->date('date_booking');
             $table->string('status_booking')->default('MENUNGGU'); //menunggu/diterima/ditolak
-            $table->string('status_service')->nullable();
+            $table->string('status_service')->default('MENUNGGU');
             $table->double('grand_total_booking')->nullable();
             $table->timestamps();
         });

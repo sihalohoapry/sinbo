@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    List Service
+    History Service
 @endsection
 @section('content')
 <div id="content" class="flex ">
@@ -11,8 +11,8 @@
         <div class="page-hero page-container " id="page-hero">
             <div class="padding d-flex">
                 <div class="page-title">
-                    <h2 class="text-md text-highlight">Service</h2>
-                    <small class="text-muted">Jadwal booking yang sudah disetujui</small>
+                    <h2 class="text-md text-highlight">History Service</h2>
+                    <small class="text-muted">daftar service yang telah dilakukan</small>
                 </div>
                 <div class="flex"></div>
             </div>
@@ -26,8 +26,8 @@
                                 <th><span class="text-muted">No</span></th>
                                 <th><span class="text-muted">Atas Nama</span></th>
                                 <th><span class="text-muted">Service</span></th>
-                                <th><span class="text-muted">Tanggal Booking</span></th>
-                                <th><span class="text-muted">Status Booking</span></th>
+                                <th><span class="text-muted">Tanggal Selesai</span></th>
+                                <th><span class="text-muted">Status Service</span></th>
 
                             </tr>
                         </thead>
@@ -52,12 +52,12 @@
                                 </td>
                                 <td>
                                     <span class="item-amount text-sm ">
-                                        {{ $row->date_booking }}
+                                        {{ $row->updated_at }}
                                     </span>
                                 </td>
                                 <td>
                                     <span class="item-amount text-sm ">
-                                        {{ $row->status_booking }}
+                                        {{ $row->status_service }}
                                     </span>                                 
                                 </td>
                                 <td>
@@ -67,8 +67,8 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right bg-black" role="menu">
                                             
-                                                <a href="{{ route('service-customer', $row->id) }}" class="dropdown-item" type="submit">
-                                                    Mulai Service
+                                                <a href="{{ route('detail-service', $row->id) }}" class="dropdown-item" type="submit">
+                                                    Lihat Detail
                                                 </a>
                                         </div>
                                     </div>

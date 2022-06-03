@@ -10,11 +10,12 @@ class OrderSparepartBooking extends Model
 {
     use HasFactory;
 
-    protected $filable = [
+    protected $fillable = [
         'booking_id',
         'sparepart_id',
         'qty',
         'price',
+        'garage_buy_price',
         'grand_price',
         'profit',
     ];

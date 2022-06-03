@@ -19,6 +19,7 @@ class CreateOrderSparepartBookingsTable extends Migration
             $table->foreignId('sparepart_id')->constrained();
             $table->double('qty');
             $table->double('price');
+            $table->double('garage_buy_price');
             $table->double('grand_price');
             $table->double('profit');
             $table->timestamps();

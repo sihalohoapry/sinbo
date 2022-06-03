@@ -15,6 +15,7 @@ class OrderSparepart extends Model
         'transaction_sparepart_id',
         'qty',
         'price',
+        'garage_buy_price',
         'grand_price',
         'profit_order',
     ];

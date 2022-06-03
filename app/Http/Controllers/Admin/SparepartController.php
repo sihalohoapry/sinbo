@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 use function PHPUnit\Framework\isEmpty;
-
+use PDF;
 class SparepartController extends Controller
 {
     /**
@@ -102,7 +102,7 @@ class SparepartController extends Controller
             unset($data['foto_sparepart']);
         }
 
-        
+
         $item->update($data);
         return redirect()->route('sparepart.index');
     }
@@ -157,9 +157,10 @@ class SparepartController extends Controller
                     'transaction_sparepart_id' => $transaction->id,
                     'qty' => $data['qty'][$item],
                     'price' => $sparepart->selling_price,
-                    'grand_price' => $sparepart->selling_price * $data['qty'][$item],
-                    'profit_order' =>($sparepart->selling_price * $data['qty'][$item]) - ($sparepart->purchase_price * $data['qty'][$item])
+                    'garage_buy_price' => $sparepart->purchase_price,
                 );
+                $data2['grand_price'] = $data2['price'] * $data['qty'][$item];
+                $data2['profit_order'] = $data2['price'] * $data['qty'][$item] - $data2['garage_buy_price'] * $data['qty'][$item];
                 $stok = $sparepart->stock_sparepart - $data['qty'][$item];
                 $sparepart->update(['stock_sparepart' => $stok ]);
                 OrderSparepart::create($data2);
@@ -180,5 +181,17 @@ class SparepartController extends Controller
             'orders' => $orders,
             'totalOrders' => $totalOrders,
         ]);
+    }
+
+    public function downloadTransaction($id) {
+        $transactions = TransactionSparepart::findOrFail($id);
+        $orders = OrderSparepart::with('Sparepart')->where('transaction_sparepart_id', $id)->get();
+        $totalOrders = OrderSparepart::where('transaction_sparepart_id', $id)->sum('grand_price');
+        $pdf = PDF::loadview('pages.sparepart.download-pdf',[
+            'transactions' => $transactions,
+            'orders' => $orders,
+            'totalOrders' => $totalOrders,
+        ]);
+        return $pdf->download('transaction-pdf');
     }
 }

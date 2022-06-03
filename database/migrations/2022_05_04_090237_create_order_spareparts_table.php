@@ -19,6 +19,7 @@ class CreateOrderSparepartsTable extends Migration
             $table->foreignId('transaction_sparepart_id')->constrained();
             $table->integer('qty')->nullable();
             $table->double('price')->nullable();
+            $table->double('garage_buy_price')->nullable();
             $table->double('grand_price')->nullable();
             $table->double('profit_order')->nullable();
             $table->timestamps();
