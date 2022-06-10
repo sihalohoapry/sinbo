@@ -94,13 +94,12 @@
                                                     </table>
                                                     
                                                 </div>
-                                        <p5 class="text-bold " style="float: right ; margin-right: 165px !important" >{{ $totalOrders }}</p5>
-                                                
+                                                <p5 class="text-bold "> Total bayar jasa service  <strong><b>Rp {{ $totalOrders }}</b></strong></p5>                                                
                                             </div>
 
                                         </div>
 
-                                        <a href="{{ route('download-detail-transaction', $transactions->id) }}" class="btn btn-success mt-5 float-end">Cetak Transaction Service</a>
+                                        <a href="{{ route('download-detail-transaction', $transactions->id) }}" class="btn btn-success mt-5 float-end">Cetak Transaksi Sparepart</a>
 
 
                                     </div>

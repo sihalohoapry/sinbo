@@ -35,6 +35,15 @@
                                                         <label class="text-muted">Status Booking</label>
                                                         <input type="text" id="title_booking" name="title_booking" readonly value="{{ $data->status_booking }}" required class="form-control">
                                                     </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label class="text-muted">Nama Pembooking</label>
+                                                        <input type="text" id="title_booking" name="title_booking" readonly value="{{ $data->User->name }}" required class="form-control">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label class="text-muted">Nomer Pembooking</label>
+                                                        <input type="text" id="title_booking" name="title_booking" readonly value="{{ $data->User->phone_number }}" required class="form-control">
+                                                    </div>
                                                     
                                                     <div class="form-group col-md-12">
                                                         <label id="description_booking" class=text-muted">Deskripsi Service</label>

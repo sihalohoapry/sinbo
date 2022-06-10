@@ -194,4 +194,13 @@ class SparepartController extends Controller
         ]);
         return $pdf->download('transaction-pdf');
     }
+    public function downloadAllTransaction() {
+        $transactions = TransactionSparepart::all();
+        $transactionLaba = TransactionSparepart::all()->sum('profit');
+        $pdf = PDF::loadview('pages.sparepart.download-pdf-sparepart',[
+            'transactions' => $transactions,
+            'transactionLaba' => $transactionLaba,
+        ]);
+        return $pdf->download('transaction-pdf');
+    }
 }

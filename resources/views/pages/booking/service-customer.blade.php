@@ -9,7 +9,7 @@
                     <div class="page-hero page-container " id="page-hero">
                         <div class="padding d-flex pt-0">
                             <div class="page-title">
-                                <h2 class="text-md text-highlight">Service </h2>
+                                <h2 class="text-md text-highlight">Mulai Service </h2>
                             </div>
                         </div>
                     </div>
@@ -37,6 +37,14 @@
                                                     <div class="form-group col-md-3">
                                                         <label class="text-muted">Status Booking</label>
                                                         <input type="text" id="title_booking" name="title_booking" readonly value="{{ $data->status_booking }}" required class="form-control">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label class="text-muted">Nama Pembooking</label>
+                                                        <input type="text" id="title_booking" name="title_booking" readonly value="{{ $data->User->name }}" required class="form-control">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label class="text-muted">Nomer Pembooking</label>
+                                                        <input type="text" id="title_booking" name="title_booking" readonly value="{{ $data->User->phone_number }}" required class="form-control">
                                                     </div>
                                                     
                                                     <div class="form-group col-md-12">
@@ -123,7 +131,7 @@
         addberkas();
       });
       function addberkas(){
-        var berkas = '<div><div class="form-group col-md-12"> <label for="name_sparepart" id="name_sparepart" class=" name_sparepart text-muted d-block">Nama Jasa</label><select name="name_sparepart[]" class="name_sparepart custom-select" > <option selected>Pilih...</option> @foreach ($spareparts as $spareparts )<option value="{{ $spareparts->id }}">{{ $spareparts->name_sparepart }} (Rp. {{ $spareparts->selling_price }}) (Stok {{ $spareparts->stock_sparepart }})  </option> @endforeach </select> </div> <div class="col-md-12"><div class="form-group"><label>Harga</label> <input type="number" name="qty[]" class="qty form-control" ></div> </div><div class="col-md-12"><div class="form-group"><a href="#" class="remove btn btn-danger mt-3 mb-5" style="float:rigth">Hapus</a></div></div>';
+        var berkas = '<div><div class="form-group col-md-12"> <label for="name_sparepart" id="name_sparepart" class=" name_sparepart text-muted d-block">Nama Jasa</label><select name="name_sparepart[]" class="name_sparepart custom-select" > <option selected>Pilih...</option> @foreach ($spareparts as $spareparts )<option value="{{ $spareparts->id }}">{{ $spareparts->name_sparepart }} (Rp. {{ $spareparts->selling_price }}) (Stok {{ $spareparts->stock_sparepart }})  </option> @endforeach </select> </div> <div class="col-md-12"><div class="form-group"><label>Jumlah</label> <input type="number" name="qty[]" class="qty form-control" ></div> </div><div class="col-md-12"><div class="form-group"><a href="#" class="remove btn btn-danger mt-3 mb-5" style="float:rigth">Hapus</a></div></div>';
         $('.berkas').append(berkas);
       };
       $('.remove').live('click',function(){

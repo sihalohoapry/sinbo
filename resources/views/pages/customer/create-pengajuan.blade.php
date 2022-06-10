@@ -38,7 +38,7 @@
                                                     
                                                     <div class="form-group col-md-12">
                                                         <label id="description_booking" class=text-muted">Deskripsi Service</label>
-                                                        <textarea id="event-desc" class="form-control" name="description_booking" rows="12" id="description_booking" required "></textarea>
+                                                        <textarea id="event-desc" class="form-control" placeholder="Silahkan tambah nomer alternatif untuk di hubungi" name="description_booking" rows="12" id="description_booking" required "></textarea>
                                                     </div>
                                                 </div>
                                                

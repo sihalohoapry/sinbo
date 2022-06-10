@@ -63,12 +63,7 @@
                             <span class="nav-text">User</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('profile') }}">
-                            <span class="nav-icon text-success"><i data-feather='user'></i></span>
-                            <span class="nav-text">Profil</span>
-                        </a>
-                    </li>
+                    
                     @else
                     <li>
                         <a href="{{ route('jadwal-service') }}">
@@ -83,6 +78,12 @@
                         </a>
                     </li>
                     @endif
+                    <li>
+                        <a href="{{ route('profile') }}">
+                            <span class="nav-icon text-success"><i data-feather='user'></i></span>
+                            <span class="nav-text">Profil</span>
+                        </a>
+                    </li>
                     <li>
                         <a  href="{{ route('logout') }}"
                         onclick="event.preventDefault();

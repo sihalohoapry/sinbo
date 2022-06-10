@@ -120,7 +120,7 @@
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="text-md text-success">{{ $accptBooking }}</div>
-                                                        <small>Selesai</small>
+                                                        <small>Diterima</small>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="text-danger text-md">{{ $rejectBooking }}</div>

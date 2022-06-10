@@ -78,6 +78,9 @@
 
                         </tbody>
                     </table>
+                    <div class="mt=5">
+                        <a href="{{ route('download-history-service') }}" class="btn btn-success mt-5">Print History Service</a>
+                    </div>
                 </div>
             </div>
         </div>

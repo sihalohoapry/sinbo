@@ -25,7 +25,7 @@ class ManageBookingController extends Controller
         return redirect()->back()->with('status', 'berhasil mengubah pengajuan, selanjutnya booking masuk ke menu service');
     }
     public function detailPengajuan($id){
-        $data = Booking::findOrFail($id);
+        $data = Booking::with('User')->findOrFail($id);
         return view('pages.booking.detail-pengajuan', ['data'=>$data]);
     }
 }

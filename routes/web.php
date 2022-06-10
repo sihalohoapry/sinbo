@@ -24,44 +24,43 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/',[CustomerSparepartController::class, 'index']);
-
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //admin/superadmin
-Route::resource('sparepart', SparepartController::class)->middleware(['auth']);
-Route::get('/hitory-transaction', [SparepartController::class, 'listTransaction'])->name('history-transaksi');
-Route::get('/create-transaction', [SparepartController::class, 'createTransaction'])->name('create-transaction');
-Route::get('/detail-transaction/{id}', [SparepartController::class, 'detailTransaction'])->name('detail-transaction');
-Route::get('/download-detail-transaction/{id}', [SparepartController::class, 'downloadTransaction'])->name('download-detail-transaction');
-Route::post('/transaction-sparepart', [SparepartController::class, 'saveTransaction'])->name('transaction-sparepart');
-Route::get('/user', [UserController::class, 'index'])->name('user');
-Route::post('/active/{id}', [UserController::class, 'activeStatus'])->name('active');
-Route::post('/non-active/{id}', [UserController::class, 'nonActiveStatus'])->name('non-active');
-Route::post('/reset-password/{id}', [UserController::class, 'resetPassword'])->name('reset-password');
-Route::post('change-role-to-admin/{id}', [UserController::class, 'setAdmin'])->name('change-role-to-admin');
-Route::get('/list-pengajuan-customer', [ManageBookingController::class, 'index'])->name('list-pengajuan-customer');
-Route::post('/accept-pengajuan-customer/{id}', [ManageBookingController::class, 'acceptPengajuan'])->name('accept-pengajuan-customer');
-Route::post('/reject-pengajuan-customer/{id}', [ManageBookingController::class, 'rejectPengajuan'])->name('reject-pengajuan-customer');
-Route::get('/detail-pengajuan-customer/{id}', [ManageBookingController::class, 'detailPengajuan'])->name('detail-pengajuan-customer');
-Route::get('/list-service-customer', [ServiceController::class, 'listService'])->name('list-service-customer');
-Route::get('/service-customer/{id}', [ServiceController::class, 'serviceCustomer'])->name('service-customer');
-Route::get('/list-history-service', [ServiceController::class, 'listHistoryService'])->name('list-history-service');
-Route::get('/detail-service/{id}', [ServiceController::class, 'detailService'])->name('detail-service');
-Route::get('/cetak-service/{id}', [ServiceController::class, 'cetakService'])->name('cetak-service');
-Route::post('/transaction-service/{id}', [ServiceController::class, 'transactionService'])->name('transaction-service');
+Route::resource('/sparepart', SparepartController::class)->middleware(['auth','admin']);
+Route::get('/hitory-transaction', [SparepartController::class, 'listTransaction'])->name('history-transaksi')->middleware(['auth','admin']);
+Route::get('/create-transaction', [SparepartController::class, 'createTransaction'])->name('create-transaction')->middleware(['auth','admin']);
+Route::get('/detail-transaction/{id}', [SparepartController::class, 'detailTransaction'])->name('detail-transaction')->middleware(['auth','admin']);
+Route::get('/download-detail-transaction/{id}', [SparepartController::class, 'downloadTransaction'])->name('download-detail-transaction')->middleware(['auth','admin']);
+Route::get('/download-transaction', [SparepartController::class, 'downloadAllTransaction'])->name('download-transaction')->middleware(['auth','admin']);
+Route::post('/transaction-sparepart', [SparepartController::class, 'saveTransaction'])->name('transaction-sparepart')->middleware(['auth','admin']);
+Route::get('/user', [UserController::class, 'index'])->name('user')->middleware(['auth','admin']);
+Route::post('/active/{id}', [UserController::class, 'activeStatus'])->name('active')->middleware(['auth','admin']);
+Route::post('/non-active/{id}', [UserController::class, 'nonActiveStatus'])->name('non-active')->middleware(['auth','admin']);
+Route::post('/reset-password/{id}', [UserController::class, 'resetPassword'])->name('reset-password')->middleware(['auth','admin']);
+Route::post('change-role-to-admin/{id}', [UserController::class, 'setAdmin'])->name('change-role-to-admin')->middleware(['auth','admin']);
+Route::get('/list-pengajuan-customer', [ManageBookingController::class, 'index'])->name('list-pengajuan-customer')->middleware(['auth','admin']);
+Route::post('/accept-pengajuan-customer/{id}', [ManageBookingController::class, 'acceptPengajuan'])->name('accept-pengajuan-customer')->middleware(['auth','admin']);
+Route::post('/reject-pengajuan-customer/{id}', [ManageBookingController::class, 'rejectPengajuan'])->name('reject-pengajuan-customer')->middleware(['auth','admin']);
+Route::get('/detail-pengajuan-customer/{id}', [ManageBookingController::class, 'detailPengajuan'])->name('detail-pengajuan-customer')->middleware(['auth','admin']);
+Route::get('/list-service-customer', [ServiceController::class, 'listService'])->name('list-service-customer')->middleware(['auth','admin']);
+Route::get('/service-customer/{id}', [ServiceController::class, 'serviceCustomer'])->name('service-customer')->middleware(['auth','admin']);
+Route::get('/list-history-service', [ServiceController::class, 'listHistoryService'])->name('list-history-service')->middleware(['auth','admin']);
+Route::get('/detail-service/{id}', [ServiceController::class, 'detailService'])->name('detail-service')->middleware(['auth','admin']);
+Route::get('/cetak-service/{id}', [ServiceController::class, 'cetakService'])->name('cetak-service')->middleware(['auth','admin']);
+Route::post('/transaction-service/{id}', [ServiceController::class, 'transactionService'])->name('transaction-service')->middleware(['auth','admin']);
 
 
 //admin/superadmin/customer
-Route::get('/profile', [UserController::class, 'profile'])->name('profile');
-Route::post('/edit-profile/{id}', [UserController::class, 'editProfile'])->name('edit-profile');
+Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware(['auth']);
+Route::post('/edit-profile/{id}', [UserController::class, 'editProfile'])->name('edit-profile')->middleware(['auth']);
 
 //user
-Route::get('/jadwal-service', [BookingCustomerController::class, 'jadwalService'])->name('jadwal-service');
+Route::get('/jadwal-service', [BookingCustomerController::class, 'jadwalService'])->name('jadwal-service')->middleware(['auth']);
 Route::get('/all-sparepart', [CustomerSparepartController::class, 'allSparepart'])->name('all-sparepart');
-Route::get('/detail-sparepart/{id}', [CustomerSparepartController::class, 'detailSparepart'])->name('detail-sparepart');
-Route::get('/create-pengajuan-booking', [BookingCustomerController::class, 'createPengajuanBooking'])->name('create-pengajuan-booking');
-Route::get('/list-pengajuan', [BookingCustomerController::class, 'listPengajuan'])->name('list-pengajuan');
-Route::post('/pengajuan-booking', [BookingCustomerController::class, 'pengajuanBooking'])->name('pengajuan-booking');
-Route::delete('/delete-booking/{id}', [BookingCustomerController::class, 'deleteBooking'])->name('delete-booking');
+Route::get('/detail-sparepart/{id}', [CustomerSparepartController::class, 'detailSparepart'])->name('detail-sparepart')->middleware(['auth']);
+Route::get('/create-pengajuan-booking', [BookingCustomerController::class, 'createPengajuanBooking'])->name('create-pengajuan-booking')->middleware(['auth']);
+Route::get('/list-pengajuan', [BookingCustomerController::class, 'listPengajuan'])->name('list-pengajuan')->middleware(['auth']);
+Route::post('/pengajuan-booking', [BookingCustomerController::class, 'pengajuanBooking'])->name('pengajuan-booking')->middleware(['auth']);
+Route::delete('/delete-booking/{id}', [BookingCustomerController::class, 'deleteBooking'])->name('delete-booking')->middleware(['auth']);

@@ -30,6 +30,7 @@
                                 <th><span class="text-muted">No</span></th>
                                 <th><span class="text-muted">Nama</span></th>
                                 <th><span class="text-muted">Tanggal transaksi</span></th>
+                                <th><span class="text-muted">Laba</span></th>
 
                             </tr>
                         </thead>
@@ -53,6 +54,9 @@
                                     </div>
                                 </td>
                                 <td>
+                                    <div class="item-except text-muted text-sm h-1x">
+                                        {{ $row->profit }}
+                                    </div>
                                 </td>
                                 <td>                                 
                                 </td>
@@ -74,7 +78,11 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="mt=5">
+                    <a href="{{ route('download-transaction') }}" class="btn btn-success mt-5">Print Trnasaksi Sparepart</a>
+                </div>
             </div>
+            
         </div>
     </div>
     <!-- ############ Main END-->

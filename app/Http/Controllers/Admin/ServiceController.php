@@ -21,7 +21,7 @@ class ServiceController extends Controller
     }
 
     public function serviceCustomer($id) {
-        $data = Booking::findOrFail($id);
+        $data = Booking::with('User')->findOrFail($id);
         $spareparts = Sparepart::all();
         return view('pages.booking.service-customer', [
             'data'=>$data,
@@ -73,6 +73,7 @@ class ServiceController extends Controller
         }
         $booking = Booking::findOrFail($id);
         $booking->update(['status_service' => 'SELESAI']);
+        $booking->update(['status_booking' => 'SELESAI SERVICE']);
         return redirect()->route('list-service-customer')->with('status','Anda telah menyelesaikan service, silahkan lihat pada menu history service');
 
 
@@ -120,6 +121,7 @@ class ServiceController extends Controller
 
 
     }
+
 
 }
 
