@@ -50,6 +50,7 @@ Route::get('/list-history-service', [ServiceController::class, 'listHistoryServi
 Route::get('/detail-service/{id}', [ServiceController::class, 'detailService'])->name('detail-service')->middleware(['auth','admin']);
 Route::get('/cetak-service/{id}', [ServiceController::class, 'cetakService'])->name('cetak-service')->middleware(['auth','admin']);
 Route::post('/transaction-service/{id}', [ServiceController::class, 'transactionService'])->name('transaction-service')->middleware(['auth','admin']);
+Route::get('/download-history-service', [ServiceController::class, 'downloadHistoryService'])->name('download-history-service')->middleware(['auth','admin']);
 
 
 //admin/superadmin/customer

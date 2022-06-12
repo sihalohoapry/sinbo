@@ -122,6 +122,14 @@ class ServiceController extends Controller
 
     }
 
+    public function downloadHistoryService() {
+        $bookings = Booking::with('User')->where('status_service', 'SELESAI')->get();
+        $pdf = PDF::loadview('pages.booking.download-history-service',[
+            'data'=>$bookings
+        ]);
+        return $pdf->download('history-service-pdf');
+    }
+
 
 }
 

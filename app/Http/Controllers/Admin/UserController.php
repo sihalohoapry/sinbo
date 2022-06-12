@@ -21,7 +21,7 @@ class UserController extends Controller
     public function activeStatus($id) {
         $users = User::findOrFail($id);
         $users->update(['status_user' => 'ACTIVE']);
-        return redirect()->back()->with('status', 'Status user berhasil dirubah');
+        return redirect()->back()->with('status', 'Status user berhasil diubah');
     }
 
 
