@@ -28,7 +28,7 @@
                                             <thead>
                                                 <tr>
                                                     <th data-sortable="true" data-field="id">No</th>
-                                                    <th data-sortable="true" data-field="owner">Nama Pembeli</th>
+                                                    <th data-sortable="true" data-field="owner">Nama Pelanggan</th>
                                                     <th data-sortable="true" data-field="project">Servis</th>
                                                     <th class="text-right" data-sortable="true" data-field="task">Tanggal Selesai</th>
                                                 </tr>
