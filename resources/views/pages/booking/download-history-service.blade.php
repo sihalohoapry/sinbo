@@ -25,7 +25,7 @@
                                         </div>
                                         <table id="table" class="table table-theme v-middle" data-plugin="bootstrapTable" data-toolbar="#toolbar" data-search="true" data-search-align="left" data-show-export="true" data-show-columns="true" data-detail-view="false" data-mobile-responsive="true"
                                         data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]">
-                                            <thead>
+                                            <thead> 
                                                 <tr>
                                                     <th data-sortable="true" data-field="id">No</th>
                                                     <th data-sortable="true" data-field="owner">Nama Pelanggan</th>

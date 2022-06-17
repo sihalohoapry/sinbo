@@ -192,7 +192,7 @@ class SparepartController extends Controller
             'orders' => $orders,
             'totalOrders' => $totalOrders,
         ]);
-        return $pdf->download('transaction-pdf');
+        return $pdf->stream('transaction-pdf');
     }
     public function downloadAllTransaction() {
         $transactions = TransactionSparepart::all();
@@ -201,6 +201,6 @@ class SparepartController extends Controller
             'transactions' => $transactions,
             'transactionLaba' => $transactionLaba,
         ]);
-        return $pdf->download('transaction-pdf');
+        return $pdf->stream('transaction-pdf');
     }
 }

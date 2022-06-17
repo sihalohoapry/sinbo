@@ -127,7 +127,7 @@ class ServiceController extends Controller
         $pdf = PDF::loadview('pages.booking.download-history-service',[
             'data'=>$bookings
         ]);
-        return $pdf->download('history-service-pdf');
+        return $pdf->stream('history-service-pdf');
     }
 
 
